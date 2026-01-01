@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Ceong | Linktree</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Animate -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  color:#fff;
+}
+
+/* Loader */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.loader-ring{
+  width:60px;
+  height:60px;
+  border:6px solid #333;
+  border-top:6px solid #25D366;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Card */
+.card{
+  width:320px;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(15px);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  animation:fadeInUp 1s;
+}
+
+/* Profile */
+.profile img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #25D366;
+  margin-bottom:10px;
+  transform:scale(1.2);
+}
+.profile h2{margin-bottom:20px}
+
+/* Buttons */
+.links{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.btn{
+  padding:14px;
+  border-radius:30px;
+  color:#fff;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:none;
+  cursor:pointer;
+  transition:.3s;
+}
+.instagram{
+  background:linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045);
+}
+.sociabuzz{background:#25D366}
+.btn:hover{
+  transform:scale(1.07);
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* Footer */
+footer{
+  margin-top:20px;
+  font-size:12px;
+  opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <p style="margin-top:15px">Loading...</p>
+</div>
+
+<div class="card">
+  <div class="profile">
+    <img src="./img/ceong.jpeg" alt="Profile">
+    <h2>Ceong</h2>
+  </div>
+
+  <div class="links">
+    <button id="igBtn" class="btn instagram">
+      <i class="fab fa-instagram"></i> Instagram
+    </button>
+
+    <button id="waBtn" class="btn sociabuzz">
+      <i class="fab fa-whatsapp"></i> Saluran WhatsApp
+    </button>
+  </div>
+</div>
+
+<footer id="footer-date"></footer>
+
+<script>
+// Loader
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },1200);
+});
+
+// Footer otomatis
+const d=new Date();
+const bulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+document.getElementById("footer-date").innerHTML=
+`© ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()} by HANSZ — All Rights Reserved`;
+
+// Instagram SweetAlert
+document.getElementById("igBtn").onclick=()=>{
+  Swal.fire({
+    title:"Buka Instagram?",
+    text:"Kamu akan diarahkan ke Instagram Ceong",
+    icon:"info",
+    showCancelButton:true,
+    confirmButtonText:"Buka",
+    cancelButtonText:"Batal",
+    confirmButtonColor:"#E1306C",
+    background:"#111",
+    color:"#fff",
+    showClass:{popup:"animate__animated animate__fadeInDown"},
+    hideClass:{popup:"animate__animated animate__fadeOutUp"}
+  }).then(r=>{
+    if(r.isConfirmed){
+      window.open("https://www.instagram.com/______ceongs/","_blank");
+    }
+  });
+};
+
+// WhatsApp SweetAlert
+document.getElementById("waBtn").onclick=()=>{
+  Swal.fire({
+    title:"Gabung Saluran WhatsApp?",
+    text:"Klik lanjut untuk masuk ke saluran resmi",
+    icon:"question",
+    showCancelButton:true,
+    confirmButtonText:"Gabung",
+    cancelButtonText:"Batal",
+    confirmButtonColor:"#25D366",
+    background:"#111",
+    color:"#fff",
+    showClass:{popup:"animate__animated animate__zoomIn"},
+    hideClass:{popup:"animate__animated animate__zoomOut"}
+  }).then(r=>{
+    if(r.isConfirmed){
+      window.open("https://www.whatsapp.com/channel/0029Vb6tdQwLCoX6Rj2ObS2G","_blank");
+    }
+  });
+};
+</script>
+
+</body>
+</html>
